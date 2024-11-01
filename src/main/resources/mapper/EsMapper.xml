@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.dao.EsMapper">
+  <resultMap id="BaseResultMap" type="demo.entity.Es">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pno" jdbcType="VARCHAR" property="pno" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="ap" jdbcType="VARCHAR" property="ap" />
+    <result column="apno" jdbcType="VARCHAR" property="apno" />
+    <result column="no" jdbcType="VARCHAR" property="no" />
+    <result column="apdate" jdbcType="TIMESTAMP" property="apdate" />
+    <result column="aupno" jdbcType="VARCHAR" property="aupno" />
+    <result column="aupdate" jdbcType="TIMESTAMP" property="aupdate" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="deAddress" jdbcType="VARCHAR" property="deaddress" />
+    <result column="inventor" jdbcType="VARCHAR" property="inventor" />
+    <result column="ipc" jdbcType="VARCHAR" property="ipc" />
+    <result column="ipc1" jdbcType="VARCHAR" property="ipc1" />
+    <result column="agency" jdbcType="VARCHAR" property="agency" />
+    <result column="priority" jdbcType="VARCHAR" property="priority" />
+    <result column="agent" jdbcType="VARCHAR" property="agent" />
+    <result column="ctno" jdbcType="VARCHAR" property="ctno" />
+    <result column="comb" jdbcType="VARCHAR" property="comb" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="fee" jdbcType="VARCHAR" property="fee" />
+    <result column="law_status" jdbcType="VARCHAR" property="lawStatus" />
+    <result column="law_name" jdbcType="VARCHAR" property="lawName" />
+    <result column="law_date" jdbcType="TIMESTAMP" property="lawDate" />
+    <result column="case_status" jdbcType="VARCHAR" property="caseStatus" />
+    <result column="c_time" jdbcType="TIMESTAMP" property="cTime" />
+    <result column="u_time" jdbcType="TIMESTAMP" property="uTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="demo.entity.EsWithBLOBs">
+    <result column="abstr" jdbcType="LONGVARCHAR" property="abstr" />
+    <result column="claim" jdbcType="LONGVARCHAR" property="claim" />
+    <result column="laws" jdbcType="LONGVARCHAR" property="laws" />
+    <result column="scope" jdbcType="LONGVARCHAR" property="scope" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pno, title, type, ap, apno, no, apdate, aupno, aupdate, address, deAddress, inventor, 
+    ipc, ipc1, agency, priority, agent, ctno, comb, state, fee, law_status, law_name, 
+    law_date, case_status, c_time, u_time
+  </sql>
+  <sql id="Blob_Column_List">
+    abstr, claim, laws, scope
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from es
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from es
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="demo.entity.EsWithBLOBs">
+    insert into es (id, pno, title, 
+      type, ap, apno, no, 
+      apdate, aupno, aupdate, 
+      address, deAddress, inventor, 
+      ipc, ipc1, agency, 
+      priority, agent, ctno, 
+      comb, state, fee, law_status, 
+      law_name, law_date, case_status, 
+      c_time, u_time, abstr, 
+      claim, laws, scope
+      )
+    values (#{id,jdbcType=INTEGER}, #{pno,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{ap,jdbcType=VARCHAR}, #{apno,jdbcType=VARCHAR}, #{no,jdbcType=VARCHAR}, 
+      #{apdate,jdbcType=TIMESTAMP}, #{aupno,jdbcType=VARCHAR}, #{aupdate,jdbcType=TIMESTAMP}, 
+      #{address,jdbcType=VARCHAR}, #{deaddress,jdbcType=VARCHAR}, #{inventor,jdbcType=VARCHAR}, 
+      #{ipc,jdbcType=VARCHAR}, #{ipc1,jdbcType=VARCHAR}, #{agency,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=VARCHAR}, #{agent,jdbcType=VARCHAR}, #{ctno,jdbcType=VARCHAR}, 
+      #{comb,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{fee,jdbcType=VARCHAR}, #{lawStatus,jdbcType=VARCHAR}, 
+      #{lawName,jdbcType=VARCHAR}, #{lawDate,jdbcType=TIMESTAMP}, #{caseStatus,jdbcType=VARCHAR}, 
+      #{cTime,jdbcType=TIMESTAMP}, #{uTime,jdbcType=TIMESTAMP}, #{abstr,jdbcType=LONGVARCHAR}, 
+      #{claim,jdbcType=LONGVARCHAR}, #{laws,jdbcType=LONGVARCHAR}, #{scope,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="demo.entity.EsWithBLOBs">
+    insert into es
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pno != null">
+        pno,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="ap != null">
+        ap,
+      </if>
+      <if test="apno != null">
+        apno,
+      </if>
+      <if test="no != null">
+        no,
+      </if>
+      <if test="apdate != null">
+        apdate,
+      </if>
+      <if test="aupno != null">
+        aupno,
+      </if>
+      <if test="aupdate != null">
+        aupdate,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="deaddress != null">
+        deAddress,
+      </if>
+      <if test="inventor != null">
+        inventor,
+      </if>
+      <if test="ipc != null">
+        ipc,
+      </if>
+      <if test="ipc1 != null">
+        ipc1,
+      </if>
+      <if test="agency != null">
+        agency,
+      </if>
+      <if test="priority != null">
+        priority,
+      </if>
+      <if test="agent != null">
+        agent,
+      </if>
+      <if test="ctno != null">
+        ctno,
+      </if>
+      <if test="comb != null">
+        comb,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="fee != null">
+        fee,
+      </if>
+      <if test="lawStatus != null">
+        law_status,
+      </if>
+      <if test="lawName != null">
+        law_name,
+      </if>
+      <if test="lawDate != null">
+        law_date,
+      </if>
+      <if test="caseStatus != null">
+        case_status,
+      </if>
+      <if test="cTime != null">
+        c_time,
+      </if>
+      <if test="uTime != null">
+        u_time,
+      </if>
+      <if test="abstr != null">
+        abstr,
+      </if>
+      <if test="claim != null">
+        claim,
+      </if>
+      <if test="laws != null">
+        laws,
+      </if>
+      <if test="scope != null">
+        scope,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pno != null">
+        #{pno,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="ap != null">
+        #{ap,jdbcType=VARCHAR},
+      </if>
+      <if test="apno != null">
+        #{apno,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null">
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="apdate != null">
+        #{apdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aupno != null">
+        #{aupno,jdbcType=VARCHAR},
+      </if>
+      <if test="aupdate != null">
+        #{aupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="deaddress != null">
+        #{deaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="inventor != null">
+        #{inventor,jdbcType=VARCHAR},
+      </if>
+      <if test="ipc != null">
+        #{ipc,jdbcType=VARCHAR},
+      </if>
+      <if test="ipc1 != null">
+        #{ipc1,jdbcType=VARCHAR},
+      </if>
+      <if test="agency != null">
+        #{agency,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=VARCHAR},
+      </if>
+      <if test="agent != null">
+        #{agent,jdbcType=VARCHAR},
+      </if>
+      <if test="ctno != null">
+        #{ctno,jdbcType=VARCHAR},
+      </if>
+      <if test="comb != null">
+        #{comb,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null">
+        #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="lawStatus != null">
+        #{lawStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lawName != null">
+        #{lawName,jdbcType=VARCHAR},
+      </if>
+      <if test="lawDate != null">
+        #{lawDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="caseStatus != null">
+        #{caseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null">
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uTime != null">
+        #{uTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="abstr != null">
+        #{abstr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="claim != null">
+        #{claim,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="laws != null">
+        #{laws,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="scope != null">
+        #{scope,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="demo.entity.EsWithBLOBs">
+    update es
+    <set>
+      <if test="pno != null">
+        pno = #{pno,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="ap != null">
+        ap = #{ap,jdbcType=VARCHAR},
+      </if>
+      <if test="apno != null">
+        apno = #{apno,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null">
+        no = #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="apdate != null">
+        apdate = #{apdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aupno != null">
+        aupno = #{aupno,jdbcType=VARCHAR},
+      </if>
+      <if test="aupdate != null">
+        aupdate = #{aupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="deaddress != null">
+        deAddress = #{deaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="inventor != null">
+        inventor = #{inventor,jdbcType=VARCHAR},
+      </if>
+      <if test="ipc != null">
+        ipc = #{ipc,jdbcType=VARCHAR},
+      </if>
+      <if test="ipc1 != null">
+        ipc1 = #{ipc1,jdbcType=VARCHAR},
+      </if>
+      <if test="agency != null">
+        agency = #{agency,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        priority = #{priority,jdbcType=VARCHAR},
+      </if>
+      <if test="agent != null">
+        agent = #{agent,jdbcType=VARCHAR},
+      </if>
+      <if test="ctno != null">
+        ctno = #{ctno,jdbcType=VARCHAR},
+      </if>
+      <if test="comb != null">
+        comb = #{comb,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null">
+        fee = #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="lawStatus != null">
+        law_status = #{lawStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lawName != null">
+        law_name = #{lawName,jdbcType=VARCHAR},
+      </if>
+      <if test="lawDate != null">
+        law_date = #{lawDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="caseStatus != null">
+        case_status = #{caseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null">
+        c_time = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uTime != null">
+        u_time = #{uTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="abstr != null">
+        abstr = #{abstr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="claim != null">
+        claim = #{claim,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="laws != null">
+        laws = #{laws,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="scope != null">
+        scope = #{scope,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="demo.entity.EsWithBLOBs">
+    update es
+    set pno = #{pno,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      ap = #{ap,jdbcType=VARCHAR},
+      apno = #{apno,jdbcType=VARCHAR},
+      no = #{no,jdbcType=VARCHAR},
+      apdate = #{apdate,jdbcType=TIMESTAMP},
+      aupno = #{aupno,jdbcType=VARCHAR},
+      aupdate = #{aupdate,jdbcType=TIMESTAMP},
+      address = #{address,jdbcType=VARCHAR},
+      deAddress = #{deaddress,jdbcType=VARCHAR},
+      inventor = #{inventor,jdbcType=VARCHAR},
+      ipc = #{ipc,jdbcType=VARCHAR},
+      ipc1 = #{ipc1,jdbcType=VARCHAR},
+      agency = #{agency,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=VARCHAR},
+      agent = #{agent,jdbcType=VARCHAR},
+      ctno = #{ctno,jdbcType=VARCHAR},
+      comb = #{comb,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=VARCHAR},
+      law_status = #{lawStatus,jdbcType=VARCHAR},
+      law_name = #{lawName,jdbcType=VARCHAR},
+      law_date = #{lawDate,jdbcType=TIMESTAMP},
+      case_status = #{caseStatus,jdbcType=VARCHAR},
+      c_time = #{cTime,jdbcType=TIMESTAMP},
+      u_time = #{uTime,jdbcType=TIMESTAMP},
+      abstr = #{abstr,jdbcType=LONGVARCHAR},
+      claim = #{claim,jdbcType=LONGVARCHAR},
+      laws = #{laws,jdbcType=LONGVARCHAR},
+      scope = #{scope,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="demo.entity.Es">
+    update es
+    set pno = #{pno,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      ap = #{ap,jdbcType=VARCHAR},
+      apno = #{apno,jdbcType=VARCHAR},
+      no = #{no,jdbcType=VARCHAR},
+      apdate = #{apdate,jdbcType=TIMESTAMP},
+      aupno = #{aupno,jdbcType=VARCHAR},
+      aupdate = #{aupdate,jdbcType=TIMESTAMP},
+      address = #{address,jdbcType=VARCHAR},
+      deAddress = #{deaddress,jdbcType=VARCHAR},
+      inventor = #{inventor,jdbcType=VARCHAR},
+      ipc = #{ipc,jdbcType=VARCHAR},
+      ipc1 = #{ipc1,jdbcType=VARCHAR},
+      agency = #{agency,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=VARCHAR},
+      agent = #{agent,jdbcType=VARCHAR},
+      ctno = #{ctno,jdbcType=VARCHAR},
+      comb = #{comb,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=VARCHAR},
+      law_status = #{lawStatus,jdbcType=VARCHAR},
+      law_name = #{lawName,jdbcType=VARCHAR},
+      law_date = #{lawDate,jdbcType=TIMESTAMP},
+      case_status = #{caseStatus,jdbcType=VARCHAR},
+      c_time = #{cTime,jdbcType=TIMESTAMP},
+      u_time = #{uTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertByList" parameterType="demo.entity.EsWithBLOBs">
+    insert into es (id, pno, title,
+    type, ap, apno, no,
+    apdate, aupno, aupdate,
+    address, deAddress, inventor,
+    ipc, ipc1, agency,
+    priority, agent, ctno,
+    laws, comb, state,
+    fee, law_status, law_name,
+    law_date, case_status, c_time,
+    u_time, abstr, claim,
+    scope)
+    values
+    <foreach collection="textList" item="textData" separator=",">
+      (#{textData.id}, #{textData.pno}, #{textData.title},
+      #{textData.type}, #{textData.ap}, #{textData.apno}, #{textData.no},
+      #{textData.apdate,jdbcType=TIMESTAMP}, #{textData.aupno}, #{textData.aupdate,jdbcType=TIMESTAMP},
+      #{textData.address}, #{textData.deaddress}, #{textData.inventor},
+      #{textData.ipc}, #{textData.ipc1}, #{textData.agency},
+      #{textData.priority}, #{textData.agent}, #{textData.ctno},
+      #{textData.laws}, #{textData.comb}, #{textData.state},
+      #{textData.fee}, #{textData.lawStatus}, #{textData.lawName},
+      #{textData.lawDate}, #{textData.caseStatus}, #{textData.cTime},
+      #{textData.uTime}, #{textData.abstr}, #{textData.claim},
+      #{textData.scope})
+    </foreach>
+  </insert>
+</mapper>
