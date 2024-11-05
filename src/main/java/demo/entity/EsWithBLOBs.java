@@ -40,4 +40,15 @@ public class EsWithBLOBs extends Es {
     public void setScope(String scope) {
         this.scope = scope == null ? null : scope.trim();
     }
+    @Override
+    public String toString() {
+        return "EsWithBLOBs{" +
+                "id=" + getId() + // 使用父类的 getter
+                ", pno='" + getPno() + '\'' + // 使用父类的 getter
+                ", title='" + getTitle() + '\'' + // 使用父类的 getter
+                ", abstr='" + abstr + '\'' +
+                ", claim='" + claim + '\'' +
+                ", scope='" + scope + '\'' +
+                '}';
+    }
 }

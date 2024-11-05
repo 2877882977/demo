@@ -21,4 +21,6 @@ public interface EsMapper {
     int updateByPrimaryKeyWithBLOBs(EsWithBLOBs record);
 
     int updateByPrimaryKey(Es record);
+    List<Es> selectBypage(@Param("pno")String pno,@Param("title")String title,@Param("state")String state);
+    List<Es>selectState(@Param("state")String state,@Param("address")String address,@Param("agent")String agent);
 }

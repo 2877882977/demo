@@ -472,4 +472,58 @@
       #{textData.scope})
     </foreach>
   </insert>
+  <select id="selectBypage"
+          parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    pno, title,
+    type, ap, apno, no,
+    apdate, aupno, aupdate,
+    address, deAddress, inventor,
+    ipc, ipc1, agency,
+    priority, agent, ctno,
+    laws, comb, state,
+    fee, law_status, law_name,
+    law_date, case_status, c_time,
+    u_time, abstr, claim,
+    scope
+    from es where 1=1
+    <if test="pno !=null and pno !=''">
+      AND pno LIKE  '%${pno}%'
+    </if>
+    <if test="title !=null and title !=''">
+      AND title LIKE '%${title}%'
+    </if>
+    <if test="state !=null and state !=''">
+      AND state LIKE  '%${state}%'
+    </if>
+    order by id desc
+  </select>
+  <select id="selectState"
+          parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    pno, title,
+    type, ap, apno, no,
+    apdate, aupno, aupdate,
+    address, deAddress, inventor,
+    ipc, ipc1, agency,
+    priority, agent, ctno,
+    laws, comb, state,
+    fee, law_status, law_name,
+    law_date, case_status, c_time,
+    u_time, abstr, claim,
+    scope
+    from es where 1=1
+    <if test="state !=null and state !=''">
+      AND state LIKE  '%${state}%'
+    </if>
+    <if test="address !=null and address !=''">
+      AND address LIKE  '%${address}%'
+    </if>
+    <if test="agent !=null and agent !=''">
+      AND agent LIKE  '%${agent}%'
+    </if>
+    order by id desc
+  </select>
 </mapper>

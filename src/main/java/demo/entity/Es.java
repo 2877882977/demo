@@ -41,6 +41,8 @@ public class Es {
 
     private String ctno;
 
+    private String laws;
+
     private String comb;
 
     private String state;
@@ -211,6 +213,14 @@ public class Es {
         this.ctno = ctno == null ? null : ctno.trim();
     }
 
+    public String getLaws() {
+        return laws;
+    }
+
+    public void setLaws(String laws) {
+        this.laws = laws == null ? null : laws.trim();
+    }
+
     public String getComb() {
         return comb;
     }
@@ -281,5 +291,39 @@ public class Es {
 
     public void setuTime(Date uTime) {
         this.uTime = uTime;
+    }
+    @Override
+    public String toString() {
+        return "Es{" +
+                "id=" + id +
+                ", pno='" + pno + '\'' +
+                ", title='" + title + '\'' +
+                ", type='" + type + '\'' +
+                ", ap='" + ap + '\'' +
+                ", apno='" + apno + '\'' +
+                ", no='" + no + '\'' +
+                ", apdate=" + apdate +
+                ", aupno='" + aupno + '\'' +
+                ", aupdate=" + aupdate +
+                ", address='" + address + '\'' +
+                ", deaddress='" + deaddress + '\'' +
+                ", inventor='" + inventor + '\'' +
+                ", ipc='" + ipc + '\'' +
+                ", ipc1='" + ipc1 + '\'' +
+                ", agency='" + agency + '\'' +
+                ", priority='" + priority + '\'' +
+                ", agent='" + agent + '\'' +
+                ", ctno='" + ctno + '\'' +
+                ", laws='" + laws + '\'' +
+                ", comb='" + comb + '\'' +
+                ", state='" + state + '\'' +
+                ", fee='" + fee + '\'' +
+                ", lawStatus='" + lawStatus + '\'' +
+                ", lawName='" + lawName + '\'' +
+                ", lawDate=" + lawDate +
+                ", caseStatus='" + caseStatus + '\'' +
+                ", cTime=" + cTime +
+                ", uTime=" + uTime +
+                '}';
     }
 }
